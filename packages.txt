@@ -1,0 +1,7 @@
+shiny
+shinythemes
+ggplot2
+dygraphs
+dplyr
+lsr
+maps

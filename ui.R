@@ -1,5 +1,12 @@
 ui = fluidPage(
     titlePanel('Education'),
+    navlistPanel(
+        tabPanel('Show 1'),
+        tabPanel('Show 2'),
+        tabPanel('Show 3'),
+        tabPanel('Show 4'),
+        tabPanel('Show 5')
+    ),
     sidebarLayout(
         sidebarPanel(
             helpText("Create demographic maps with 
