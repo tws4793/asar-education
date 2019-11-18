@@ -4,3 +4,5 @@ services:
     container_name: asar-project
     ports:
       - 3838:3838
+    # environment:
+    #   - USER=tws
