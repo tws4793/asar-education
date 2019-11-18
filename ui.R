@@ -1,33 +1,206 @@
-ui = fluidPage(
-    titlePanel('Education'),
-    navlistPanel(
-        tabPanel('Show 1'),
-        tabPanel('Show 2'),
-        tabPanel('Show 3'),
-        tabPanel('Show 4'),
-        tabPanel('Show 5')
+# install.packages('shinydashboard')
+# library(shinydashboard)
+
+common = fluidRow(
+    column(
+        width = 12,
+        valueBoxOutput('over_n_country'),
+        valueBoxOutput('over_sg_mean_time'),
+    )
+)
+
+rb_result = radioButtons(
+    inputId = 'rb_result',
+    label = 'Select',
+    choices = c(
+        'Study Time',
+        'Score'
     ),
-    sidebarLayout(
-        sidebarPanel(
-            helpText("Create demographic maps with 
-               information from the 2010 US Census."),
+    selected = 'Score'
+)
 
-      selectInput('var',
-                  label = "Choose a variable to display",
-                  choices = c("Percent White",
-                              "Percent Black",
-                              "Percent Hispanic",
-                              "Percent Asian"),
-                  selected = "Percent White"),
+cb_posessions = checkboxGroupInput(
+    inputId = 'in_cb_posessions',
+    label = 'Select Some Posessions',
+    choices = c(
+        'Books',
+        'Maid',
+        'Study'
+    ),
+    selected = 'Books'
+)
 
-      sliderInput('range',
-                  label = "Range of interest:",
-                  min = 0, max = 100, value = c(0, 100))
-        ),
-        mainPanel(
-            h1('Education'),
-            textOutput('selected_var'),
-            textOutput('table')
+p1 = fluidRow(
+    common,
+    fluidRow(
+        column(
+            width = 12,
+            box(
+                title = 'Settings',
+                status = 'primary',
+                width = 3,
+                solidHeader = T,
+                rb_result,
+                hr(),
+                radioButtons(
+                    inputId = 'p1_country_sel',
+                    label = 'Region',
+                    choices = c(
+                        'ALL',
+                        'APAC',
+                        'EMEA',
+                        'Americas'
+                    )
+                ),
+            ),
+            box(
+                title = 'Country View',
+                status = 'primary',
+                width = 5,
+                solidHeader = T,
+                'Map', br(),
+                plotOutput('bw_cnt', click = 'cl_bw_cnt')
+            ),
+            box(
+                title = 'Top 10 Countries',
+                status = 'primary',
+                width = 4,
+                solidHeader = T,
+                plotOutput('bar_top_cnt', click = 'cl_bar_top_cnt')
+            )
         )
+    )
+)
+
+dd_country = selectInput(
+    inputId = 'cnt_criteria',
+    label = 'Select Country',
+    choices = c(
+        'Singapore',
+        'South Korea'
     ),
+    selected = 'Singapore'
+)
+
+p2 = fluidRow(
+    common,
+    fluidRow(
+        column(
+            width = 12,
+            box(
+                title = 'Settings',
+                status = 'primary',
+                width = 3,
+                solidHeader = T,
+                dd_country
+            ),
+            box(
+                title = 'Scatter Plot',
+                status = 'primary',
+                width = 9,
+                solidHeader = T,
+                plotOutput('scatter_compare_cnt', click = 'scatter_cnt')
+            )
+        )
+    )
+)
+
+p3 = fluidRow(
+    common,
+    fluidRow(
+        column(
+            width = 12,
+            box(
+                title = 'Settings',
+                status = 'primary',
+                width = 3,
+                solidHeader = T,
+                dd_country
+            ),
+            box(
+                title = 'Result',
+                status = 'primary',
+                width = 9,
+                solidHeader = T,
+                plotOutput('scatter_compare_cnt', click = 'scatter_cnt')
+            )
+        )
+    )
+)
+
+p4 = fluidRow(
+    fluidRow(
+
+    ),
+    fluidRow(
+        column(
+            width = 12,
+            box(
+                title = 'Scatter',
+                status = 'primary',
+                width = 3,
+                solidHeader = T,
+                rb_result,
+                cb_posessions
+            ),
+            box(
+                title = 'Result',
+                status = 'primary',
+                width = 9,
+                solidHeader = T
+            )
+        )
+    )
+)
+
+p5 = fluidRow(
+    column(
+        width = 12,
+        box(
+            title = 'Settings',
+            status = 'primary',
+            width = 3,
+            solidHeader = T,
+            cb_posessions
+        ),
+        box(
+            title = 'Final Predicted Score',
+            status = 'primary',
+            width = 9,
+            solidHeader = T,
+            '137',
+            textOutput('final_predict_result')
+        )
+    )
+)
+
+header = dashboardHeader(
+    title = 'Education'
+)
+
+sidebar = dashboardSidebar(
+    sidebarMenu(
+        menuItem('Time Spent Studying', tabName = 'main', icon = icon('dashboard')),
+        menuItem('Measuring Countries', tabName = 'two'),
+        menuItem('Result - World', tabName = 'three'),
+        menuItem('Result - Singapore', tabName = 'four'),
+        menuItem('Prediction', tabName = 'five')
+    )
+)
+
+body = dashboardBody(
+    tabItems(
+        tabItem(tabName = 'main', p1),
+        tabItem(tabName = 'two', p2),
+        tabItem(tabName = 'three', p3),
+        tabItem(tabName = 'four', p4),
+        tabItem(tabName = 'five', p5)
+    )
+)
+
+ui = dashboardPage(
+# skin = 'black',
+    header,
+    sidebar,
+    body
 )
