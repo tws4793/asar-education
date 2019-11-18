@@ -1,10 +1,7 @@
 version: '3'
 services:
-  asar_dashboard:
+  dashboard:
     image: rocker/shiny
-    container_name: asar_dashboard
-    ports:
-      - 3838:3838
     volumes:
       - ..:/srv/shiny-server/
     working_dir: /srv/shiny-server/
