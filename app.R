@@ -39,7 +39,7 @@ common = fluidRow(
     )
 )
 
-p1 = fluidRow(
+p1 = fluidRow( # Overview of Time Spent Studying and Score
     common,
     fluidRow(
         column(
@@ -87,7 +87,7 @@ p1 = fluidRow(
     )
 )
 
-p2 = fluidRow(
+p2 = fluidRow( # Time Spent Studying vs Score
     # common,
     fluidRow(
         column(
@@ -114,7 +114,7 @@ p2 = fluidRow(
     )
 )
 
-p3 = fluidRow(
+p3 = fluidRow( # Time Spent Studying vs Score - Boxplot
     # common,
     fluidRow(
         column(
@@ -141,9 +141,12 @@ p3 = fluidRow(
     )
 )
 
-p4 = fluidRow(
+p4 = fluidRow( # Compare Material Factors vs Time Spent Studying
     fluidRow(
-
+        column(
+            width = 12,
+            'Hello'
+        )
     ),
     fluidRow(
         column(
@@ -174,7 +177,7 @@ p4 = fluidRow(
     )
 )
 
-p5 = fluidRow(
+p5 = fluidRow( # Predict Score by Material Factors
     column(
         width = 12,
         box(
@@ -276,6 +279,10 @@ server = function(input, output, session) {
 
   output$over_oecd = renderText({
     paste('n hours', '\n', '500')
+  })
+
+  output$bar_top_cnt = renderPlot({
+      plot()
   })
 
   output$scatter_compare_cnt = renderPlot({
