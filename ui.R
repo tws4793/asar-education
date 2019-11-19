@@ -1,33 +1,25 @@
 # install.packages('shinydashboard')
-# library(shinydashboard)
+library(shinydashboard)
 
 common = fluidRow(
     column(
         width = 12,
-        valueBoxOutput('over_n_country'),
-        valueBoxOutput('over_sg_mean_time'),
+        box(
+            title = 'No of Countries',
+            width = 4,
+            textOutput('over_n_country')
+        ),
+        box(
+            title = 'Singapore Mean',
+            width = 4,
+            textOutput('over_sg')
+        ),
+        box(
+            title = 'OECD Mean',
+            width = 4,
+            textOutput('over_oecd')
+        )
     )
-)
-
-rb_result = radioButtons(
-    inputId = 'rb_result',
-    label = 'Select',
-    choices = c(
-        'Study Time',
-        'Score'
-    ),
-    selected = 'Score'
-)
-
-cb_posessions = checkboxGroupInput(
-    inputId = 'in_cb_posessions',
-    label = 'Select Some Posessions',
-    choices = c(
-        'Books',
-        'Maid',
-        'Study'
-    ),
-    selected = 'Books'
 )
 
 p1 = fluidRow(
@@ -40,10 +32,15 @@ p1 = fluidRow(
                 status = 'primary',
                 width = 3,
                 solidHeader = T,
-                rb_result,
+                radioButtons(
+                    inputId = 'in_rb_result_main',
+                    label = 'Select',
+                    choices = c('Study Time', 'Score'),
+                    selected = 'Study Time'
+                ),
                 hr(),
                 radioButtons(
-                    inputId = 'p1_country_sel',
+                    inputId = 'in_rb_region_main',
                     label = 'Region',
                     choices = c(
                         'ALL',
@@ -51,35 +48,26 @@ p1 = fluidRow(
                         'EMEA',
                         'Americas'
                     )
-                ),
+                )
             ),
             box(
                 title = 'Country View',
                 status = 'primary',
                 width = 5,
                 solidHeader = T,
-                'Map', br(),
-                plotOutput('bw_cnt', click = 'cl_bw_cnt')
+                #plotOutput(),
+                br(),
+                # plotOutput('plot_bw_cnt', click = 'cl_bw_cnt')
             ),
             box(
                 title = 'Top 10 Countries',
                 status = 'primary',
                 width = 4,
                 solidHeader = T,
-                plotOutput('bar_top_cnt', click = 'cl_bar_top_cnt')
+                # plotOutput('bar_top_cnt', click = 'cl_bar_top_cnt')
             )
         )
     )
-)
-
-dd_country = selectInput(
-    inputId = 'cnt_criteria',
-    label = 'Select Country',
-    choices = c(
-        'Singapore',
-        'South Korea'
-    ),
-    selected = 'Singapore'
 )
 
 p2 = fluidRow(
@@ -92,14 +80,18 @@ p2 = fluidRow(
                 status = 'primary',
                 width = 3,
                 solidHeader = T,
-                dd_country
+                selectInput(
+                    inputId = 'in_dd_country_sc',
+                    label = 'Select Country',
+                    choices = NULL
+                )
             ),
             box(
                 title = 'Scatter Plot',
                 status = 'primary',
                 width = 9,
                 solidHeader = T,
-                plotOutput('scatter_compare_cnt', click = 'scatter_cnt')
+                # plotOutput('scatter_compare_cnt', click = 'scatter_cnt')
             )
         )
     )
@@ -115,14 +107,18 @@ p3 = fluidRow(
                 status = 'primary',
                 width = 3,
                 solidHeader = T,
-                dd_country
+                selectInput(
+                    inputId = 'in_dd_country_bp',
+                    label = 'Select Country',
+                    choices = NULL
+                )
             ),
             box(
                 title = 'Result',
                 status = 'primary',
                 width = 9,
                 solidHeader = T,
-                plotOutput('scatter_compare_cnt', click = 'scatter_cnt')
+                # plotOutput('scatter_compare_cnt', click = 'scatter_cnt')
             )
         )
     )
@@ -140,8 +136,16 @@ p4 = fluidRow(
                 status = 'primary',
                 width = 3,
                 solidHeader = T,
-                rb_result,
-                cb_posessions
+                radioButtons(
+                    inputId = 'in_rb_result_sc',
+                    label = 'Select',
+                    choices = c('Study Time', 'Score')
+                ),
+                checkboxGroupInput(
+                    inputId = 'in_cb_posessions_sc',
+                    label = 'Select Some Posessions',
+                    choices = NULL
+                )
             ),
             box(
                 title = 'Result',
@@ -161,15 +165,18 @@ p5 = fluidRow(
             status = 'primary',
             width = 3,
             solidHeader = T,
-            cb_posessions
+            checkboxGroupInput(
+                inputId = 'in_cb_posessions_fsc',
+                label = 'Select Some Posessions',
+                choices = NULL
+            )
         ),
         box(
             title = 'Final Predicted Score',
             status = 'primary',
             width = 9,
             solidHeader = T,
-            '137',
-            textOutput('final_predict_result')
+            textOutput('txt_final_predict_result')
         )
     )
 )
