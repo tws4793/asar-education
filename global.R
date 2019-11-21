@@ -42,11 +42,42 @@ pisa$Age = as.numeric(as.character(pisa$Age))
 pisa$CNT[pisa$CNT == 'Spain (Regions)'] = 'Spain'
 pisa$CNT[pisa$CNT == 'Massachusettes (USA)'] = 'United States'
 pisa$CNT[pisa$CNT == 'North Carolina (USA)'] = 'United States'
-pisa$N_BOOKS = factor(
-  pisa$N_BOOKS,
-  order = T,
-  levels = c('0-10 books','11-25 books','26-100 books','101-200 books','201-500 books','>500 books')
+
+order_n_books = c(
+    '0-10 books',
+    '11-25 books',
+    '26-100 books',
+    '101-200 books',
+    '201-500 books',
+    'More than 500 books'
+  )
+order_stu_edu_levels = c(
+  '<ISCED level 2>',
+  '<ISCED level 3A>',
+  '<ISCED level 4>',
+  '<ISCED level 5B>',
+  '<ISCED level 5A or 6>'
 )
+order_edu_levels = c(
+  'None',
+  'ISCED 1',
+  'ISCED 2',
+  'ISCED 3A, ISCED 4',
+  'ISCED 5B',
+  'ISCED 5A, 6'
+)
+order_ag_scale = c(
+  'Strongly disagree',
+  'Disagree',
+  'Agree',
+  'Strongly agree'
+)
+
+pisa$N_BOOKS = ordered(pisa$N_BOOKS, levels = order_n_books)
+pisa$EXP_COMP_GRADE = ordered(pisa$EXP_COMP_GRADE, levels = order_stu_edu_levels)
+pisa$MOM_EDU = ordered(pisa$MOM_EDU, levels = order_edu_levels)
+pisa$DAD_EDU = ordered(pisa$DAD_EDU, levels = order_edu_levels)
+pisa$PARENTS_INTEREST = ordered(pisa$PARENTS_INTEREST, levels = order_ag_scale)
 
 # pisa_r = merge(x = pisa, y = region, by = "CNT", all.x = T)
 # s_pisa = subset(pisa_r, CNT %in% get_countries)
@@ -108,5 +139,4 @@ opt_factors_detail = c(
 )
 
 opt_factors = setNames(as.list(opt_factors_vars), opt_factors_detail)
-
 opt_ag_scale = c('Strongly Disagree', 'Disagree', 'Agree', 'Strongly Agree')
