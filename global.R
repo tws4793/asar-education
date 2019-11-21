@@ -42,6 +42,11 @@ pisa$Age = as.numeric(as.character(pisa$Age))
 pisa$CNT[pisa$CNT == 'Spain (Regions)'] = 'Spain'
 pisa$CNT[pisa$CNT == 'Massachusettes (USA)'] = 'United States'
 pisa$CNT[pisa$CNT == 'North Carolina (USA)'] = 'United States'
+pisa$N_BOOKS = factor(
+  pisa$N_BOOKS,
+  order = T,
+  levels = c('0-10 books','11-25 books','26-100 books','101-200 books','201-500 books','>500 books')
+)
 
 # pisa_r = merge(x = pisa, y = region, by = "CNT", all.x = T)
 # s_pisa = subset(pisa_r, CNT %in% get_countries)
