@@ -73,12 +73,18 @@ server = function(input, output, session) {
   })
 
   output$plot_map = renderLeaflet({
+    is_study = input$in_rb_result_main == 'Study Time'
+
     pal = colorNumeric(
-      palette = c('light green', 'green', 'dark green'),
-      domain = if (input$in_rb_result_main == 'Study Time') compare$Total_learn_Time else compare$PISA_Science_Score
+      palette =
+        if (is_study)
+          c('light green', 'green', 'dark green')
+        else
+          c('light blue', 'blue', 'dark blue'),
+      domain = if (is_study) compare$Total_learn_Time else compare$PISA_Science_Score
     )
 
-    if (input$in_rb_result_main == 'Study Time') {
+    if (is_study) {
       leaflet(reactive_region_cnt()) %>%
         setView(lng = -15, lat = 20, zoom = 1.5) %>%
         addTiles() %>%
