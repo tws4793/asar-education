@@ -12,7 +12,7 @@ common = fluidRow(
   )
 )
 
-p1 = fluidRow( # Overview of Time Spent Studying and Score
+p1 = fluidRow(# Overview of Time Spent Studying and Score
   common,
   fluidRow(
     column(
@@ -57,7 +57,7 @@ p1 = fluidRow( # Overview of Time Spent Studying and Score
   )
 )
 
-p2 = fluidRow( # Time Spent Studying vs Score
+p2 = fluidRow(# Time Spent Studying vs Score
   fluidRow(
     column(
       width = 12,
@@ -72,25 +72,25 @@ p2 = fluidRow( # Time Spent Studying vs Score
           choices = c('Total', 'Outside School'),
           selected = 'Total'
         )
-        # selectInput(
-        #   inputId = 'in_dd_country_sc',
-        #   label = 'Select Country',
-        #   choices = NULL
-        # )
+# selectInput(
+#   inputId = 'in_dd_country_sc',
+#   label = 'Select Country',
+#   choices = NULL
+# )
       ),
       box(
         title = 'Does spending more time studying results in better scores?',
         status = 'primary',
         width = 10,
         solidHeader = T,
-        # h2('Does spending more time studying results in better scores?'),
+# h2('Does spending more time studying results in better scores?'),
         plotOutput('plot_sc_score_stime')
       )
     )
   )
 )
 
-p3 = fluidRow( # Compare Gender
+p3 = fluidRow(# Compare Gender
   fluidRow(
     column(
       width = 12,
@@ -127,7 +127,7 @@ p3 = fluidRow( # Compare Gender
   )
 )
 
-p4 = fluidRow( # Time Spent Studying vs Score - Boxplot
+p4 = fluidRow(# Time Spent Studying vs Score - Boxplot
   fluidRow(
     column(
       width = 12,
@@ -158,7 +158,7 @@ p4 = fluidRow( # Time Spent Studying vs Score - Boxplot
   )
 )
 
-p5 = fluidRow( # Predict Score by Material Factors
+p5 = fluidRow(# Predict Score by Material Factors
   column(
     width = 12,
     box(
@@ -169,7 +169,7 @@ p5 = fluidRow( # Predict Score by Material Factors
       radioButtons(
         inputId = 'in_rb_stu_factor1',
         label = 'Gender',
-        inline= TRUE,
+        inline = T,
         choices = c('Male', 'Female')
       ),
       checkboxInput(
@@ -228,8 +228,8 @@ p5 = fluidRow( # Predict Score by Material Factors
       solidHeader = T,
       span(
         strong(textOutput('txt_final_predict_result')),
-        style='font-size: 200px',
-        align='center'
+        style = 'font-size: 200px',
+        align = 'center'
       )
     )
   )
@@ -237,17 +237,17 @@ p5 = fluidRow( # Predict Score by Material Factors
 
 header = dashboardHeader(
   title = textOutput('title')
-  # dropdownMenu(
-  #   type = 'messages',
-  #   messageItem(
-  #     from = 'G3 T2',
-  #     message = 'Hello!',
-  #     time = '11:30'
-  #   )
-  # )
+# dropdownMenu(
+#   type = 'messages',
+#   messageItem(
+#     from = 'G3 T2',
+#     message = 'Hello!',
+#     time = '11:30'
+#   )
+# )
 )
 
-sidebar = dashboardSidebar( #change to blue
+sidebar = dashboardSidebar(#change to blue
   sidebarMenu(
     menuItem('Global', startExpanded = T,
       menuSubItem('Overview', tabName = 'index', icon = icon('dashboard')),

@@ -75,7 +75,7 @@ opt_explain_detail = c(
   'Science Score'
 )
 
-opt_explain_d = setNames(as.list(opt_explain_detail),opt_explain)
+opt_explain_d = setNames(as.list(opt_explain_detail), opt_explain)
 
 opt_factors_vars = c(
   'TECH_BOOKS',
@@ -102,6 +102,6 @@ opt_factors_detail = c(
   'Repeat Grade'
 )
 
-opt_factors = setNames(as.list(opt_factors_vars),opt_factors_detail)
+opt_factors = setNames(as.list(opt_factors_vars), opt_factors_detail)
 
 opt_ag_scale = c('Strongly Disagree', 'Disagree', 'Agree', 'Strongly Agree')
