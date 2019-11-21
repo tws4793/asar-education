@@ -12,6 +12,24 @@ Singapore is well known for its quality education compared to other countries. I
 
 In this project and this dashboard you are viewing right now, we want to find out whether the time spent studying has, in any way, contribute to their performance in PISA, especially that of Science. We are also interested in the factors contributing to out-of-school study time and performance of Singaporean students.
 
+## Setup
+
+### Using Docker
+
+To be announced.
+
+### Using `runGitHub` Command
+
+To run the codes, simply run the command in any R environment that has `shiny` installed :
+
+```bash
+shiny::runGitHub('asar-education','tws4793')
+```
+
+### Natively
+
+Alternatively, you may download the zip file of this project from the 'Clone or download' button on the top right of this repository. Extract to any directory of your choice and execute the `runApp()` command directly in the directory.
+
 ## Datasets
 
 The datasets can be obtained from the [OECD PISA website](https://www.oecd.org/pisa/data/2015database/).
