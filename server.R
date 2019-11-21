@@ -78,8 +78,6 @@ server = function(input, output, session) {
       domain = if (input$in_rb_result_main == 'Study Time') compare$Total_learn_Time else compare$PISA_Science_Score
     )
 
-    #TODO: Country, Time, Score
-
     if (input$in_rb_result_main == 'Study Time') {
       leaflet(reactive_region_cnt()) %>%
         setView(lng = -15, lat = 20, zoom = 1.5) %>%
@@ -127,7 +125,7 @@ server = function(input, output, session) {
           label = Total_learn_Time
         )
       ) +
-        geom_text(nudge_y = 1) +
+        geom_text(nudge_y = 2) +
         scale_fill_gradient(low = "green", high = "dark green") +
         geom_hline(yintercept = oecd_study_time, colour = "#BB0000", size = 2) +
         geom_bar(stat = 'identity') +
@@ -148,7 +146,7 @@ server = function(input, output, session) {
           label = PISA_Science_Score
         )
       ) +
-        geom_text(nudge_y = 10) +
+        geom_text(nudge_y = 18) +
         scale_fill_gradient(low = "blue", high = "dark blue") +
         geom_hline(yintercept = oecd_score, colour = "#BB0000", size = 2) +
         geom_bar(stat = 'identity') +
