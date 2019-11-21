@@ -367,7 +367,7 @@ server = function(input, output, session) {
     scale = opt_ag_scale
 
     score = 375 + if (gender == 'Male') 26 else 0
-    score = score + if (retain) 60 else 0
+    score = score + if (!retain) 60 else 0
     score = score + if (parent) 12 else 0
     score = score + if (computer) 26 else 0
     score = score + if (car == 1) 8 else if (car > 1) 12 else 0
