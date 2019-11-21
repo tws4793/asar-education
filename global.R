@@ -61,6 +61,9 @@ compare$longitude = as.numeric(as.character(compare$longitude))
 # compare_score_sort = compare_summary[order(-compare_summary$mean_score),]
 # compare_time_sort = compare_summary[order(-compare_summary$mean_time_study)]
 
+oecd_study_time = 44
+oecd_score = 493
+
 get_regions = compare %>% distinct(Sub_region)
 
 opt_explain = c(

@@ -52,7 +52,8 @@ server = function(input, output, session) {
     )
   })
   output$over_oecd_study = renderValueBox({
-    value = round(mean(compare$Total_learn_Time),2)
+    # value = round(mean(compare$Total_learn_Time), 2)
+    value = oecd_study_time
     
     valueBox(
       paste(value, 'h'),
@@ -61,7 +62,8 @@ server = function(input, output, session) {
     )
   })
   output$over_oecd_score = renderValueBox({
-    value = round(mean(compare$PISA_Science_Score),2)
+    # value = round(mean(compare$PISA_Science_Score), 2)
+    value = oecd_score
     
     valueBox(
       paste(value),
@@ -127,7 +129,7 @@ server = function(input, output, session) {
       ) +
         geom_text(nudge_y = 1) +
         scale_fill_gradient(low = "green", high = "dark green") +
-        geom_hline(yintercept = 44, colour="#BB0000", size = 2) +
+        geom_hline(yintercept = oecd_study_time, colour = "#BB0000", size = 2) +
         geom_bar(stat = 'identity') +
         coord_flip() +
         labs(
@@ -148,7 +150,7 @@ server = function(input, output, session) {
       ) +
         geom_text(nudge_y = 10) +
         scale_fill_gradient(low = "blue", high = "dark blue") +
-        geom_hline(yintercept = 493, colour="#BB0000", size = 2) +
+        geom_hline(yintercept = oecd_score, colour = "#BB0000", size = 2) +
         geom_bar(stat = 'identity') +
         coord_flip() +
         labs(
@@ -174,13 +176,13 @@ server = function(input, output, session) {
     ) +
       geom_point(shape=23, fill="blue", color="darkred", size = 3) +
       geom_hline(
-        yintercept=493,
-        colour="#BB0000",
+        yintercept = oecd_score,
+        colour = "#BB0000",
         size = 2
       ) +
       geom_vline(
-        xintercept = if (is_total) 44 else 17.21,
-        colour="#BB0000",
+        xintercept = if (is_total) oecd_study_time else 17.21,
+        colour = "#BB0000",
         size = 2
       ) +
       geom_label_repel(
