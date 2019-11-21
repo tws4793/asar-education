@@ -219,7 +219,7 @@ p5 = fluidRow(# Predict Score by Material Factors
         inputId = 'in_sc_stu_factor10',
         label = 'I feel anxious even if I am prepared',
         choices = opt_ag_scale
-      ),
+      )
     ),
     box(
       title = 'Final Predicted Score',
